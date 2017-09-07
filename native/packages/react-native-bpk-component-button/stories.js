@@ -2,8 +2,9 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { storiesOf } from '@storybook/react-native';
+import { action } from '@storybook/addon-actions';
 
-import BpkButton from '../../packages/react-native-bpk-component-button';
+import BpkButton from './src/BpkButton';
 
 const styles = StyleSheet.create({
   centered: {
@@ -21,6 +22,12 @@ storiesOf('BpkButton', module)
   )
   .add('Default', () => (
     <View>
-      <BpkButton>Button</BpkButton>
+      <BpkButton title="Primary" onPress={action('primary clicked')} />
+      <BpkButton large title="Primary" onPress={action('primary large clicked')} />
+      <BpkButton disabled title="Disabled" onPress={action('disabled clicked')} />
+      <BpkButton selected title="Selected" onPress={action('selected clicked')} />
+      <BpkButton type="featured" title="Featured" onPress={action('featured clicked')} />
+      <BpkButton type="secondary" title="Secondary" onPress={action('secondary clicked')} />
+      <BpkButton type="destructive" title="Destructive" onPress={action('destructive clicked')} />
     </View>
   ));

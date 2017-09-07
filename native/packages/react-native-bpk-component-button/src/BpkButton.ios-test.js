@@ -35,18 +35,16 @@
 
  describe('iOS', () => {
    describe('BpkButton', () => {
-     const onPress = () => {};
-
      it('should render correctly', () => {
        const tree = renderer.create(
-         <BpkButton title="Lorem ipsum" onPress={onPress} />,
+         <BpkButton title="Lorem ipsum" onPress={() => {}} />,
        ).toJSON();
        expect(tree).toMatchSnapshot();
      });
 
      it('should support overwriting styles', () => {
        const tree = renderer.create(
-         <BpkButton title="Lorem ipsum" onPress={onPress} style={{ color: 'red' }} />,
+         <BpkButton title="Lorem ipsum" onPress={() => {}} style={{ color: 'red' }} />,
        ).toJSON();
        expect(tree).toMatchSnapshot();
      });
