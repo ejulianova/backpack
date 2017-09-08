@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "bpk-tokens": "^24.2.0",
-    "prop-types": "^15.5.8"
+    "prop-types": "^15.5.8",
+    "react-native-linear-gradient": "^2.3.0"
   }
 }

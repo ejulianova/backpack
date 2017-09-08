@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
@@ -20,12 +20,12 @@ storiesOf('BpkButton', module)
       {getStory()}
     </View>,
   )
-  .add('Default', () => (
+  .add('Primary', () => (
     <View>
-      <BpkButton title="Primary" onPress={action('primary clicked')} />
-      <BpkButton large title="Primary" onPress={action('primary large clicked')} />
-      <BpkButton disabled title="Disabled" onPress={action('disabled clicked')} />
-      <BpkButton selected title="Selected" onPress={action('selected clicked')} />
+      <BpkButton type="primary" title="Primary" onPress={action('primary clicked')} />
+      <BpkButton type="primary" large title="Primary" onPress={action('primary large clicked')} />
+      <BpkButton type="primary" disabled title="Disabled" onPress={action('disabled clicked')} />
+      <BpkButton type="primary" selected title="Selected" onPress={action('selected clicked')} />
       <BpkButton type="featured" title="Featured" onPress={action('featured clicked')} />
       <BpkButton type="secondary" title="Secondary" onPress={action('secondary clicked')} />
       <BpkButton type="destructive" title="Destructive" onPress={action('destructive clicked')} />

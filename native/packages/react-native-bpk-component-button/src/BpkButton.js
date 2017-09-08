@@ -19,131 +19,50 @@
  import {
    Text,
    TouchableHighlight,
-   Platform,
  } from 'react-native';
  import React from 'react';
  import PropTypes from 'prop-types';
+ import LinearGradient from 'react-native-linear-gradient';
 
- const IOS_TOKENS = require('bpk-tokens/tokens/ios/base.react.native.common.js');
- const ANDROID_TOKENS = require('bpk-tokens/tokens/android/base.react.native.common.js');
+ import styles from './BpkButton-styles';
 
- const tokens = Platform.select({
-   ios: () => IOS_TOKENS,
-   android: () => ANDROID_TOKENS,
- })();
-
- const styles = {
-   bpkButton: {
-     base: {
-       text: {
-         fontSize: tokens.textSmFontSize,
-         fontWeight: '600', // TODO tokenize
-         textAlign: 'center',
-       },
-       button: {
-         borderRadius: 100,
-         paddingTop: tokens.spacingMd,
-         paddingBottom: tokens.spacingMd,
-         paddingLeft: tokens.spacingLg,
-         paddingRight: tokens.spacingLg,
-       },
-     },
-     large: {
-       text: {
-         fontSize: tokens.textLgFontSize,
-       },
-     },
-     disabled: {
-       text: {
-         color: tokens.colorGray300,
-       },
-       button: {
-         backgroundColor: '#DFDCE3', // TODO tokenize
-       },
-     },
-     selected: {
-       underlayColor: tokens.colorBlue800,
-       text: {
-         color: tokens.colorWhite,
-       },
-       button: {
-         backgroundColor: tokens.colorBlue600,
-       },
-     },
-     primary: {
-       underlayColor: tokens.colorGreen700,
-       text: {
-         color: tokens.colorWhite,
-       },
-       button: {
-         backgroundColor: tokens.colorGreen500,
-       },
-     },
-     secondary: {
-       underlayColor: tokens.colorWhite,
-       text: {
-         color: tokens.colorBlue500,
-       },
-       button: {
-         backgroundColor: tokens.colorWhite,
-         borderColor: tokens.colorGray100,
-         borderWidth: 2, // TODO tokenize
-
-         // minus the borderWidth so it's the same size as other buttons.
-         paddingTop: tokens.spacingMd - 2,
-         paddingBottom: tokens.spacingMd - 2,
-         paddingLeft: tokens.spacingLg - 2,
-         paddingRight: tokens.spacingLg - 2,
-       },
-     },
-     destructive: {
-       underlayColor: tokens.colorWhite,
-       text: {
-         color: tokens.colorRed500,
-       },
-       button: {
-         backgroundColor: tokens.colorWhite,
-         borderColor: tokens.colorGray100,
-         borderWidth: 2, // TODO tokenize
-
-         // minus the borderWidth so it's the same size as other buttons.
-         paddingTop: tokens.spacingMd - 2,
-         paddingBottom: tokens.spacingMd - 2,
-         paddingLeft: tokens.spacingLg - 2,
-         paddingRight: tokens.spacingLg - 2,
-       },
-     },
-     featured: {
-       underlayColor: '#C50F52', // TODO tokenize
-       text: {
-         color: tokens.colorWhite,
-       },
-       button: {
-         backgroundColor: '#fa488a', // TODO tokenize
-       },
-     },
-   },
- };
-
- const getStylesToApply = (textOrButton, { type, large, disabled, selected }) => {
-   const stylesToApply = [styles.bpkButton.base[textOrButton], styles.bpkButton[type][textOrButton]];
+ const getTextStyle = ({ type, large, disabled }) => {
+   const textStyle = [styles.base.text];
+   if (styles[type].text) {
+     textStyle.push(styles[type].text);
+   }
    if (large) {
-     stylesToApply.push(styles.bpkButton.large[textOrButton]);
+     textStyle.push(styles.large.text);
    }
    if (disabled) {
-     stylesToApply.push(styles.bpkButton.disabled[textOrButton]);
+     textStyle.push(styles.disabled.text);
    }
-   if (selected) {
-     stylesToApply.push(styles.bpkButton.selected[textOrButton]);
-   }
-   return stylesToApply;
+   return textStyle;
  };
 
- const getUnderlayColor = ({ type, selected }) => {
-   if (selected) {
-     return styles.bpkButton.selected.underlayColor;
+ const getButtonStyle = ({ type, disabled, selected }) => {
+   const btnStyle = [styles.base.button];
+   if (styles[type].button) {
+     btnStyle.push(styles[type].button);
    }
-   return styles.bpkButton[type].underlayColor;
+   if (selected) {
+     btnStyle.push(styles.selected.button);
+   }
+   if (disabled) {
+     btnStyle.push(styles.disabled.button);
+   }
+   return btnStyle;
+ };
+
+ const getGradientColors = ({ type, disabled, selected }) => {
+   let stylesToApply = styles[type].gradientColors;
+   if (selected) {
+     stylesToApply = styles.selected.gradientColors;
+   }
+   if (disabled) {
+     stylesToApply = styles.disabled.gradientColors;
+   }
+   return stylesToApply;
  };
 
  const BpkButton = (props) => {
@@ -154,24 +73,26 @@
      large,
      disabled,
      selected,
+     children,
      ...rest
    } = props;
    // Note that TouchableHighlight isn't on Android, so TouchableFeedback
    // will need to be used to support it.
    return (
      <TouchableHighlight
+       style={styles.base.container}
        disabled={disabled}
        selected={selected}
        onPress={onPress}
-       style={getStylesToApply('button', props)}
-       underlayColor={getUnderlayColor(props)}
        {...rest}
      >
-       <Text style={getStylesToApply('text', props)}>{title}</Text>
+       <LinearGradient style={getButtonStyle(props)} colors={getGradientColors(props)}>
+         <Text style={getTextStyle(props)}>{title}</Text>
+         {children}
+       </LinearGradient>
      </TouchableHighlight>
    );
  };
-
 
  BpkButton.propTypes = {
    title: PropTypes.string.isRequired,
@@ -180,6 +101,7 @@
    large: PropTypes.bool,
    disabled: PropTypes.bool,
    selected: PropTypes.bool,
+   children: PropTypes.node,
  };
 
  BpkButton.defaultProps = {
@@ -187,6 +109,7 @@
    large: false,
    disabled: false,
    selected: false,
+   children: null,
  };
 
  export default BpkButton;
