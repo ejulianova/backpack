@@ -9,6 +9,7 @@ exports[`Android BpkInput should render correctly 1`] = `
         "borderRadius": 4,
         "borderWidth": 1,
         "flexDirection": "row",
+        "height": 48,
         "padding": 12,
       },
     ]
@@ -16,8 +17,9 @@ exports[`Android BpkInput should render correctly 1`] = `
 >
   <TextInput
     editable={true}
-    onChangeText={null}
+    padding={0}
     placeholder={undefined}
+    placeholderTextColor="rgb(178, 174, 189)"
     style={
       Array [
         Object {
@@ -28,6 +30,7 @@ exports[`Android BpkInput should render correctly 1`] = `
         },
       ]
     }
+    underlineColorAndroid="transparent"
     value={undefined}
   />
 </View>

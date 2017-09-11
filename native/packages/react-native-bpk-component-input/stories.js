@@ -28,36 +28,36 @@ storiesOf('BpkInput', module)
   .add('Default', () => (
     <View>
       <BpkInput
-        style={{ width, height: 'auto', marginTop: 12 }}
+        style={{ width, marginBottom: 12 }}
         placeholderText={'placeholder'}
         text={'Large'}
       />
       <BpkInput
-        style={{ width, height: 'auto', marginTop: 12 }}
+        style={{ width, marginBottom: 12 }}
         small
         placeholderText={'placeholder'}
         text={'Small'}
       />
       <BpkInput
-        style={{ width, height: 'auto', marginTop: 12 }}
+        style={{ width, marginBottom: 12 }}
         small
         placeholderText={'valid'}
         text={'Valid'}
         valid
       />
       <BpkInput
-        style={{ width, height: 'auto', marginTop: 12 }}
+        style={{ width, marginBottom: 12 }}
         placeholderText={'valid'}
         text={'Invalid'}
         valid={false}
       />
       <BpkInput
-        style={{ width, height: 'auto', marginTop: 12 }}
-        placeholderText={'placeholder'}
+        style={{ width, marginBottom: 12 }}
+        placeholderText={'Large placeholder'}
         text={''}
       />
       <BpkInput
-        style={{ width, height: 'auto', marginTop: 12 }}
+        style={{ width, marginBottom: 12 }}
         disabled
         small
         placeholderText={'placeholder'}
@@ -65,14 +65,14 @@ storiesOf('BpkInput', module)
       />
       <BpkInput
         small
-        style={{ width, height: 'auto', marginTop: 12 }}
+        style={{ width, marginBottom: 12 }}
         secureTextEntry
         placeholderText={'password'}
         text={'password'}
       />
       <BpkInput
         small
-        style={{ width, height: 'auto', marginTop: 12 }}
+        style={{ width, marginBottom: 12 }}
         keyboardType={'phone-pad'}
         placeholderText={'Phone number'}
         text={''}

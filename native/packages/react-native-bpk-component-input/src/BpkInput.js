@@ -35,7 +35,7 @@ const tokens = Platform.select({
 })();
 
 const {
-  colorGray100,
+  colorGray100, // TODO <-- Define / Use tokens specifically for Text-Input
   colorGray300,
   colorGray700,
   spacingMd,
@@ -68,19 +68,18 @@ const styles = StyleSheet.create({
   },
   placeholderText: {
     fontStyle: 'italic',
-    color: colorGray300,
   },
   disabledText: {
     color: colorGray100,
   },
   icon: {
     flex: 0,
-    width: 20,
-    height: 20,
+    width: 24,
+    height: 24,
   },
   smallIcon: {
-    width: 13,
-    height: 13,
+    width: 16,
+    height: 16,
   },
 });
 
@@ -120,6 +119,9 @@ const BpkInput = (props) => {
       style={style}
     >
       <TextInput
+        padding={0}
+        underlineColorAndroid={'transparent'}
+        placeholderTextColor={colorGray300}
         style={textStyle}
         editable={!disabled}
         value={text}
