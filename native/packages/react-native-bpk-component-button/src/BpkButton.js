@@ -79,23 +79,34 @@
    // Note that TouchableHighlight isn't on Android, so TouchableFeedback
    // will need to be used to support it.
    return (
-     <TouchableHighlight
-       style={styles.base.container}
-       disabled={disabled}
-       selected={selected}
-       onPress={onPress}
-       {...rest}
-     >
-       <LinearGradient style={getButtonStyle(props)} colors={getGradientColors(props)}>
+     <LinearGradient style={getButtonStyle(props)} colors={getGradientColors(props)}>
+       <TouchableHighlight
+         style={styles.base.container}
+         disabled={disabled}
+         selected={selected}
+         onPress={onPress}
+         {...rest}
+       >
          <Text style={getTextStyle(props)}>{title}</Text>
-         {children}
-       </LinearGradient>
-     </TouchableHighlight>
+       </TouchableHighlight>
+     </LinearGradient>
+    //  <TouchableHighlight
+    //    style={styles.base.container}
+    //    disabled={disabled}
+    //    selected={selected}
+    //    onPress={onPress}
+    //    {...rest}
+    //  >
+    //    <LinearGradient style={getButtonStyle(props)} colors={getGradientColors(props)}>
+    //      <Text style={getTextStyle(props)}>{title}</Text>
+    //      {children}
+    //    </LinearGradient>
+    //  </TouchableHighlight>
    );
  };
 
  BpkButton.propTypes = {
-   title: PropTypes.string.isRequired,
+   title: PropTypes.string,
    onPress: PropTypes.func.isRequired,
    type: PropTypes.string.isRequired,
    large: PropTypes.bool,
@@ -105,6 +116,7 @@
  };
 
  BpkButton.defaultProps = {
+   title: null,
    type: 'primary',
    large: false,
    disabled: false,

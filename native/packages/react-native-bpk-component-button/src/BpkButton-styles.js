@@ -19,10 +19,10 @@ const styles = {
     },
     button: {
       borderRadius: 100,
-      paddingTop: tokens.spacingMd,
-      paddingBottom: tokens.spacingMd,
-      paddingLeft: tokens.spacingLg,
-      paddingRight: tokens.spacingLg,
+      // paddingTop: tokens.spacingMd,
+      // paddingBottom: tokens.spacingMd,
+      // paddingLeft: tokens.spacingLg,
+      // paddingRight: tokens.spacingLg,
     },
     container: {
       borderRadius: 100,
