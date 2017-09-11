@@ -17,6 +17,7 @@
  */
 
  import {
+   View,
    Text,
    TouchableHighlight,
  } from 'react-native';
@@ -79,29 +80,21 @@
    // Note that TouchableHighlight isn't on Android, so TouchableFeedback
    // will need to be used to support it.
    return (
-     <LinearGradient style={getButtonStyle(props)} colors={getGradientColors(props)}>
+     <LinearGradient style={styles.base.container} colors={getGradientColors(props)}>
        <TouchableHighlight
-         style={styles.base.container}
+         style={getButtonStyle(props)}
          disabled={disabled}
          selected={selected}
          onPress={onPress}
+         underlayColor={styles.base.underlayColor}
          {...rest}
        >
-         <Text style={getTextStyle(props)}>{title}</Text>
+         <View>
+           <Text style={getTextStyle(props)}>{title}</Text>
+           {children}
+         </View>
        </TouchableHighlight>
      </LinearGradient>
-    //  <TouchableHighlight
-    //    style={styles.base.container}
-    //    disabled={disabled}
-    //    selected={selected}
-    //    onPress={onPress}
-    //    {...rest}
-    //  >
-    //    <LinearGradient style={getButtonStyle(props)} colors={getGradientColors(props)}>
-    //      <Text style={getTextStyle(props)}>{title}</Text>
-    //      {children}
-    //    </LinearGradient>
-    //  </TouchableHighlight>
    );
  };
 

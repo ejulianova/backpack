@@ -10,6 +10,7 @@ const tokens = Platform.select({
 
 const styles = {
   base: {
+    underlayColor: 'rgba(0, 0, 0, 0.15)',
     text: {
       backgroundColor: 'transparent',
       color: tokens.colorWhite,
@@ -17,15 +18,15 @@ const styles = {
       fontWeight: '600', // TODO tokenize
       textAlign: 'center',
     },
-    button: {
-      borderRadius: 100,
-      // paddingTop: tokens.spacingMd,
-      // paddingBottom: tokens.spacingMd,
-      // paddingLeft: tokens.spacingLg,
-      // paddingRight: tokens.spacingLg,
-    },
     container: {
       borderRadius: 100,
+    },
+    button: {
+      borderRadius: 100,
+      paddingTop: tokens.spacingMd,
+      paddingBottom: tokens.spacingMd,
+      paddingLeft: tokens.spacingLg,
+      paddingRight: tokens.spacingLg,
     },
   },
   large: {
