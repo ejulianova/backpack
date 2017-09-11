@@ -1,6 +1,6 @@
 # react-native-bpk-component-input
 
-> Backpack React Native input component.
+> Backpack React Native text input component.
 
 ## Installation
 

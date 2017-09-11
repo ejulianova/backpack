@@ -19,7 +19,7 @@
 import {
   View,
   TextInput,
-Image,
+  Image,
   Platform,
   StyleSheet,
 } from 'react-native';
@@ -34,32 +34,44 @@ const tokens = Platform.select({
   android: () => ANDROID_TOKENS,
 })();
 
+const {
+  colorGray100,
+  colorGray300,
+  colorGray700,
+  spacingMd,
+  spacingSm,
+  textLgFontSize,
+  textXsFontSize,
+} = tokens;
+
 const styles = StyleSheet.create({
   input: {
-    borderColor: tokens.colorGray100,
+    borderColor: colorGray100,
     borderWidth: 1,
-    borderRadius: tokens.spacingSm, // TODO SWAP OUT FOR CORRECT TOKEN
-    padding: tokens.spacingSm * 3,
+    borderRadius: spacingSm, // TODO SWAP OUT FOR CORRECT TOKEN
+    padding: spacingSm * 3,
     flexDirection: 'row',
+    height: 48,
   },
   text: {
-    fontSize: tokens.textLgFontSize,
-    color: tokens.colorGray700,
+    fontSize: textLgFontSize,
+    color: colorGray700,
     width: 'auto',
     flex: 1,
   },
   smallInput: {
-    padding: tokens.spacingMd,
+    padding: spacingMd,
+    height: 32,
   },
   smallText: {
-    fontSize: tokens.textXsFontSize,
+    fontSize: textXsFontSize,
   },
   placeholderText: {
     fontStyle: 'italic',
-    color: tokens.colorGray300,
+    color: colorGray300,
   },
   disabledText: {
-    color: tokens.colorGray100,
+    color: colorGray100,
   },
   icon: {
     flex: 0,
@@ -73,7 +85,7 @@ const styles = StyleSheet.create({
 });
 
 const BpkInput = (props) => {
-  const { small, valid, onTextChanged, text, placeholderText, disabled, style: innerStyle, ...rest } = props;
+  const { small, valid, text, placeholderText, disabled, style: innerStyle, ...rest } = props;
 
   let iconSource = null;
 
@@ -111,7 +123,6 @@ const BpkInput = (props) => {
         style={textStyle}
         editable={!disabled}
         value={text}
-        onChangeText={onTextChanged}
         placeholder={placeholderText}
         {...rest}
       />
@@ -127,7 +138,6 @@ const BpkInput = (props) => {
 
 BpkInput.propTypes = {
   disabled: PropTypes.bool,
-  onTextChanged: PropTypes.func,
   small: PropTypes.bool,
   valid: PropTypes.bool,
   style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
@@ -137,7 +147,6 @@ BpkInput.propTypes = {
 
 BpkInput.defaultProps = {
   disabled: false,
-  onTextChanged: null,
   small: false,
   style: null,
   valid: null,

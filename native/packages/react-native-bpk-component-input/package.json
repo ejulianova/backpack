@@ -3,7 +3,7 @@
   "name": "react-native-bpk-component-input",
   "version": "0.0.1",
   "main": "index.js",
-  "description": "Backpack native documentation.",
+  "description": "Backpack React Native text input component.",
   "repository": {
     "type": "git",
     "url": "git@github.com:Skyscanner/backpack.git"
