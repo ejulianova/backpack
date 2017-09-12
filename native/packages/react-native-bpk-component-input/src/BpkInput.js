@@ -35,7 +35,7 @@ const tokens = Platform.select({
 })();
 
 const {
-  colorGray100, // TODO <-- Define / Use tokens specifically for Text-Input
+  colorGray100,
   colorGray300,
   colorGray700,
   spacingMd,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   input: {
     borderColor: colorGray100,
     borderWidth: 1,
-    borderRadius: spacingSm, // TODO SWAP OUT FOR CORRECT TOKEN
+    borderRadius: spacingSm,
     padding: spacingSm * 3,
     flexDirection: 'row',
     height: 48,
@@ -58,6 +58,8 @@ const styles = StyleSheet.create({
     color: colorGray700,
     width: 'auto',
     flex: 1,
+    fontWeight: Platform.OS === 'ios' ? tokens.textLgFontWeight : undefined,
+    fontFamily: Platform.OS === 'android' ? 'sans-serif-medium' : 'System',
   },
   smallInput: {
     padding: spacingMd,
@@ -65,6 +67,8 @@ const styles = StyleSheet.create({
   },
   smallText: {
     fontSize: textXsFontSize,
+    fontWeight: Platform.OS === 'ios' ? tokens.textXsFontWeight : undefined,
+    fontFamily: Platform.OS === 'android' ? 'sans-serif' : 'System',
   },
   placeholderText: {
     fontStyle: 'italic',
